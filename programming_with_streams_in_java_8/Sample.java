@@ -36,7 +36,12 @@ public class Sample {
 		// We are focused on each element
 
 		// Let's use Streams instead
-		System.out.println("Using a stream " + people.stream().filter(person -> person.getGender() == Gender.FEMALE)
+		// The filter commands still give you a stream of Person objects
+		// The 'map' commands are operations on an item in the stream
+		// e.g. person.getName() gives you a String
+		System.out.println("Using a stream " + 
+				people.stream()
+		        .filter(person -> person.getGender() == Gender.FEMALE)
 				.filter(person -> person.getAge() > 18)
 				.map(person -> person.getName())
 				.map(named -> named.toUpperCase())
