@@ -1,0 +1,75 @@
+Programming with Streams in Java 8
+Venkat Subramaniam
+Email: venkats@agiledeveloper.com
+Twitter: @venkat_s
+http://www.agiledeveloper.com download link
+  
+Topics:
+-The first visible change in Java: lambdas
+-The real power in Java 8: Streams
+-What does it do for us?
+ -separates what from how
+ -functional in nature
+ -focus on the whole instead of the parts
+-Let's give it a try
+ -Example: get, in uppercase, the names of all female older than 18
+ -the imperative way
+ -the functional way with streams 
+-What is it?
+	-abstraction
+	-non mutating
+	-a view of how data is transformed
+	-a pipeline
+-How do we use them?
+	-Raise from concrete to stream
+	-Ride the stream
+	-Compose operations
+	-Land back on a concrete
+-Streams employ function composition
+-stateless behavior
+-pure functions
+-Specialized functions
+  -filter - print all males
+  -map - print all males, but with name in uppercase
+  -reduce
+   -general reduce - total age of everyone
+   -specialized
+    -sum
+    -max - oldest
+    -min - youngest
+    -count - non-adults
+-Characteristics: sized, ordered, distinct, sorted
+	-depends on source
+	-depends on operation
+-raise, operate, and land
+-use care landing
+-the wrong way - list of all adult names in uppercase
+-the right way - specialized reduce called collect
+   - list
+	  - the benefits
+  	- simplification
+ - set
+ - map
+ - groupingBy
+-sorting with comparators
+  -sorted with comparator
+  -comparing
+  -thenComparing
+-Efficiency?
+-Intermediate vs. Terminal operations
+-Fusing and lazy evaluation
+ - find first person whose name is four letters but is older than 25
+-Infinite streams
+ -short-circuiting intermediate and terminal operations
+-parallel streams
+ -consequences
+ -deterministic behavior with sequential
+	- find first person older than 25
+ -avoid side-effects
+  -totaling a value
+  -mapping to a collection
+ -non-determinism in some special cases
+	- find *any* person older than 25
+	
+You can download this topics list and code examples from:
+	http://www.agiledeveloper.com	 - downloads link
