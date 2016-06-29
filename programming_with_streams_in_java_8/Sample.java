@@ -79,9 +79,36 @@ public class Sample {
 		 * their age to the running total The first postIt has a 0 on it -
 		 * that's the starting point The age is the result of the previous line
 		 * i.e. getAge()
+		 * 
+		 * .reduce:  0 is the starting point;  the initial value
+		 * 	ACCUMULATOR:  an associative operation to apply to 2 instances in the stream
 		 */
-		System.out.println("Total age of women " + people.stream().filter(person -> person.getGender() == Gender.FEMALE)
-				.map(Person::getAge).reduce(0, (runningtotal, age) -> runningtotal + age));
+		System.out.println("Total age of women " 
+				+ people.stream()
+				.filter(person -> person.getGender() == Gender.FEMALE)
+				.map(Person::getAge)
+				.reduce(0, (x, y) -> x + y));  //given the age of two persons, add them
+		
+		//Here's how we'd do a sum of numbers
+		List<Integer> numbers = Arrays.asList(1,2,3,4,5);
+		System.out.println("Sum of numbers is " +
+				numbers.stream()
+				.reduce(0,(x,y) -> x + y));
+		//Here's how we'd do n! - note that start point is 1
+		System.out.println("Factorial of numbers is " +
+				numbers.stream()
+				.reduce(1,(x,y) -> x * y));
+		
+		//Here's how we'd do a sum of even numbers
+				System.out.println("Sum of even numbers is " +
+				numbers.stream()
+				.filter(a -> a % 2 == 0)
+				.reduce(0,(x,y) -> x + y));
+		//Here's how we'd do a sum of odd numbers
+		System.out.println("Sum of odd numbers is " +
+		numbers.stream()
+		.filter(a -> a % 2 == 1)
+		.reduce(0,(x,y) -> x + y));
 		/*
 		 * map(Person::getAge) results in a collection of Integers, but we
 		 * cannot call sum() which is the usual way of summing a collection of
@@ -142,12 +169,14 @@ public class Sample {
 			.forEach(name -> namesUpper.add(name));
 		
 		/*
+		 * SUPPLIER, ACCUMULATOR, COMBINER
+		 * 
 		 * This is what we should have done - used collect to land back on a
 		 * concrete class.  This is threadsafe as the temporary variables have been created 
 		 * within our stream operations.  collect needs a supplier, an accumulator and a combiner
-		 * supplier is the blank postIt to start with
-		 * accumulator is where we choose the ArrayList operation that will do the accumulation 
-		 * combiner is the ArrayList operation that would combine two instances together
+		 * SUPPLIER - the blank postIt note that we start with;  in this case, an ArrayList
+		 * ACCUMULATOR - where we choose the ArrayList operation that will do the accumulation 
+		 * COMBINER - is the ArrayList operation that would combine two instances together
 		 * i.e. if we were using a different collection instead of ArrayList, we'd have
 		 * different operations
 		 */
