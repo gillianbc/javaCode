@@ -180,11 +180,11 @@ public class Sample {
 		 * i.e. if we were using a different collection instead of ArrayList, we'd have
 		 * different operations
 		 */
-		List<String> namesUpper2 = new ArrayList<>();
+		List<String> namesUpper2 = new ArrayList<String>();
 		namesUpper2 = people.stream()
 			.filter(person -> person.getAge() > 17)
 			.map(adult -> adult.getName().toUpperCase())
-			.collect(() -> new ArrayList(),
+			.collect(() -> new ArrayList<String>(),
 			(list, name) -> list.add(name),
 			(list1, list2) -> list1.addAll(list2));
 		System.out.println(namesUpper2);
