@@ -110,11 +110,7 @@ public class Sample {
 		.filter(a -> a % 2 == 1)
 		.reduce(0,(x,y) -> x + y));
 		/*
-		 * map(Person::getAge) results in a collection of Integers, but we
-		 * cannot call sum() which is the usual way of summing a collection of
-		 * numerics. To make the base class methods available, we use mapToInt
-		 * which gives us an IntStream 
-		 * 
+		 
 		 * Intermediate operations return a new
 		 * stream. They are always lazy.
 		 * Executing an intermediate operation
@@ -135,6 +131,13 @@ public class Sample {
 		 * and spliterator() are not; these are provided as an "escape hatch" to
 		 * enable arbitrary client-controlled pipeline traversals in the event
 		 * that the existing operations are not sufficient to the task.
+		 * 
+		 * WHY MAPTOINT?
+		 * 
+		 * map(Person::getAge) results in a collection of Integers, but we
+		 * cannot call sum() which is the usual way of summing a collection of
+		 * numerics. To make the base class methods available, we use mapToInt
+		 * which gives us an IntStream 
 		 * 
 		 * 
 		 * sum() is an operation on the whole collection i.e. it reduces
