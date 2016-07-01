@@ -5,7 +5,23 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
-
+/**
+ * Example of using a TreeSet which is sorted in the order defined
+ * in my Comparator
+ * 
+ * The Notelette class that I am sorting has 2 string fields; a notetype
+ * and some note text. It also has an integer field called sequence.
+ * <p>
+ * I want them sorted by notetype first then notetext.  
+ * I merge the texts of 2 notes if the notetype is the same</p>
+ * 
+ * I can then do the same exercise to sort them by type and then sequence
+ * just by using a different comparator i.e. merge notes of same note type
+ * in order of sequence
+ * 
+ * @author gillian
+ *
+ */
 public class tryNotes {
 
 	public static void main(String a[]) {
@@ -16,7 +32,7 @@ public class tryNotes {
 		noteSet.add(new Notelette("Berry", "B", 31));
 		noteSet.add(new Notelette("Apple", "X", 0));
 		noteSet.add(new Notelette("Dunk", "D", 1));
-		noteSet.add(new Notelette("Apple", "X", 2));
+		noteSet.add(new Notelette("Apple", "F", 2));
 		noteSet.add(new Notelette("Berry", "C", 3));
 		noteSet.add(new Notelette("Crish", "X", 4));
 		noteSet.add(new Notelette("Berry", "E", 5));
@@ -25,7 +41,7 @@ public class tryNotes {
 		noteSet.add(new Notelette("Dunk", "C", 111));
 		noteSet.add(new Notelette("Dunk", "B", 112));
 		noteSet.add(new Notelette("Emo", "X", 113));
-		noteSet.add(new Notelette("Emo", "X", 115));
+//		noteSet.add(new Notelette("Emo", "A", 115));
 		
 		for (Notelette e : noteSet) {
 			System.out.println(e);
@@ -51,6 +67,7 @@ public class tryNotes {
 					strBuf = startNewBuffer(n1);
 				}
 		}
+		n1.setNoteText(strBuf.toString());
 		noteSet2.add(n1);
 		System.out.println("===========================");
 		for (Notelette e : noteSet2) {
