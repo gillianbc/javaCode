@@ -24,7 +24,7 @@ import java.util.TreeSet;
  * @author gillian
  *
  */
-public class tryNotes {
+public class MainNotelettes {
 
 	public static void main(String a[]) {
 		// By using name comparator (String comparison)
