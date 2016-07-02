@@ -5,19 +5,21 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
+
 /**
- * Example of using a TreeSet which is sorted in the order defined
- * in my Comparator
+ * Example of using a TreeSet which is sorted in the order defined in my
+ * Comparator
  * 
- * The Notelette class that I am sorting has 2 string fields; a notetype
- * and some note text. It also has an integer field called sequence.
+ * The Notelette class that I am sorting has 2 string fields; a notetype and
+ * some note text. It also has an integer field called sequence.
  * <p>
- * I want them sorted by notetype first then notetext.  
- * I merge the texts of 2 notes if the notetype is the same</p>
+ * I want them sorted by notetype first then notetext. I merge the texts of 2
+ * notes if the notetype is the same
+ * </p>
  * 
- * I can then do the same exercise to sort them by type and then sequence
- * just by using a different comparator i.e. merge notes of same note type
- * in order of sequence
+ * I can then do the same exercise to sort them by type and then sequence just
+ * by using a different comparator i.e. merge notes of same note type in order
+ * of sequence
  * 
  * @author gillian
  *
@@ -26,7 +28,9 @@ public class tryNotes {
 
 	public static void main(String a[]) {
 		// By using name comparator (String comparison)
-		TreeSet<Notelette> noteSet = new TreeSet<Notelette>(new MyComparer());
+		//Just swap between MyComparer and MyComparer2 here to see the effects of different
+		//sort order in the TreeSet
+		TreeSet<Notelette> noteSet = new TreeSet<Notelette>(new MyComparer2());
 		noteSet.add(new Notelette("Crish", "Z", 41));
 		noteSet.add(new Notelette("Berry", "A", 23));
 		noteSet.add(new Notelette("Berry", "B", 31));
@@ -41,22 +45,22 @@ public class tryNotes {
 		noteSet.add(new Notelette("Dunk", "C", 111));
 		noteSet.add(new Notelette("Dunk", "B", 112));
 		noteSet.add(new Notelette("Emo", "X", 113));
-//		noteSet.add(new Notelette("Emo", "A", 115));
-		
+		// noteSet.add(new Notelette("Emo", "A", 115));
+
 		for (Notelette e : noteSet) {
 			System.out.println(e);
 		}
-		
+
 		Set<Notelette> noteSet2 = new LinkedHashSet<>();
 		Notelette n1 = null;
 		Notelette n2 = null;
 		StringBuffer strBuf = null;
 		for (Iterator<Notelette> iterator = noteSet.iterator(); iterator.hasNext();) {
 			n2 = (Notelette) iterator.next();
-			if (n1 == null){
+			if (n1 == null) {
 				n1 = n2;
 				strBuf = startNewBuffer(n1);
-				}
+			}
 			else
 				if (n2.getNoteType() == n1.getNoteType())
 					strBuf.append(n2.getNoteText());
@@ -96,6 +100,29 @@ class MyComparer implements Comparator<Notelette> {
 		else {
 			return -1;
 		}
+	}
+}
+
+class MyComparer2 implements Comparator<Notelette> {
+	// compare by type, the sequence
+	@Override
+	public int compare(Notelette e1, Notelette e2) {
+		String a = e1.getNoteType();
+		String b = e2.getNoteType();
+		int aSeq = e1.getSequence();
+		int bSeq = e2.getSequence();
+		if (a.equals(b)) {
+			if (aSeq == bSeq)
+				return 0;
+			else {
+				if (aSeq > bSeq)
+					return 1;
+				else
+					return -1;
+			}
+		}
+		else
+			return a.compareTo(b);
 	}
 }
 
