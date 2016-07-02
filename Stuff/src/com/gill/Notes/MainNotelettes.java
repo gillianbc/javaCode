@@ -1,4 +1,4 @@
-package com.gill.Notes;
+package com.gill.notes;
 
 import java.util.Comparator;
 import java.util.Iterator;

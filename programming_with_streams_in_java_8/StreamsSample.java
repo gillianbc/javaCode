@@ -10,7 +10,7 @@ import java.util.*;
 
 import static java.util.stream.Collectors.*;
 
-public class Sample {
+public class StreamsSample {
 
 	public static List<Person> createPeople() {
 		return Arrays.asList(new Person("Sara", Gender.FEMALE, 20), new Person("Sara", Gender.FEMALE, 22),
