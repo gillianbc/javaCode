@@ -1,4 +1,4 @@
-package com.gill.Notes;
+package com.gill.notes;
 
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -9,7 +9,7 @@ public class MainNote {
 	private static TreeSet<Note> noteSet = new TreeSet<Note>(new NoteComparerTypeSeq());
 	private static NoteUtils utility = new NoteUtils();
 	public static void main(String[] args){
-		utility.makeNoteSet(noteSet);
+		utility.makeSampleNotesSet(noteSet);
 		utility.printNoteSet(noteSet);
 		Set<Note> reducedNotes = utility.reduceNotes(noteSet);
 		utility.printNoteSet(reducedNotes);

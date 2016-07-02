@@ -1,4 +1,4 @@
-package com.gill.Notes;
+package com.gill.notes;
 
 public class Note {
 
@@ -16,6 +16,12 @@ public class Note {
 			// TODO Auto-generated constructor stub
 		}
 
+		//Copy constructor to avoid mutations
+		public Note(Note otherNote){
+			this.noteType = otherNote.noteType;
+			this.sequence = otherNote.sequence;
+			this.noteText = otherNote.noteText;
+		}
 		public String getNoteType() {
 			return noteType;
 		}
