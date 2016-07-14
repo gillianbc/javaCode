@@ -1,13 +1,15 @@
 package lambdas;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class DeclarativeDemo {
 
 	public static void main(String[] args) {
-		List<Integer> numbers = Arrays.asList(1, 2, 3, 5, 4, 8);
+		List<Integer> numbers = Arrays.asList(1, 3, 2, 3, 5, 8, 4, 8);
 		// find the double of the first even integer greater than 3
 		// This is the dirty imperative way to do it
 		int result = 0;
@@ -37,25 +39,55 @@ public class DeclarativeDemo {
 		System.out.println(numbers.stream()
 				.filter(e -> e > 3)
 				.filter(e -> e % 2 == 0)
-				.map(e -> e * 2).findFirst());
-		
+				.map(e -> e * 2)
+				.findFirst());
 
+		/*
+		 * You can also use method calls for the filtering and mapping
+		 */
 		System.out.println(numbers.stream()
 				.filter(DeclarativeDemo::isGreaterThan3)
 				.filter(DeclarativeDemo::isEven)
 				.map(DeclarativeDemo::doubleMe)
-				.findFirst()
-				);
+				.findFirst());
+
+		/*
+		 * Print out the numbers that are duplicates i.e. 
+		 * occur more than once in the stream
+		 */
+		System.out.println("Duplicates are:");
+		numbers.stream()
+			.filter(i -> Collections.frequency(numbers, i) > 1)
+			.collect(Collectors.toSet())
+			.forEach(System.out::println);
+		
+		//Same as above but a different way of printing out
+		numbers.stream()
+		.filter(i -> Collections.frequency(numbers, i) > 1)
+		.collect(Collectors.toSet())
+		.forEach(p -> System.out.println("Duplicated: " + p));
+		
+		//Simple boolean condition - has duplicates?
+		if (numbers.stream().filter(i -> Collections.frequency(numbers, i) > 1).count() > 0)
+			System.out.println("Has duplicates");
+		
+		//Also see: http://www.leveluplunch.com/java/examples/stream-terminal-operations-example/
+				
+		
+		
 	}
-	public static boolean isGreaterThan3(int a){
+	
+	public static boolean isGreaterThan3(int a) {
 		System.out.println("Is > 3 - " + a);
 		return a > 3;
 	}
-	public static boolean isEven(int a){
+
+	public static boolean isEven(int a) {
 		System.out.println("Is even - " + a);
-		return a % 2 ==0;
+		return a % 2 == 0;
 	}
-	public static int doubleMe(int a){
+
+	public static int doubleMe(int a) {
 		System.out.println("Doubling - " + a);
 		return a * 2;
 	}
