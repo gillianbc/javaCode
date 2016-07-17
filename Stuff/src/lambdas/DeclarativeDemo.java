@@ -4,7 +4,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class DeclarativeDemo {
 
@@ -72,9 +75,47 @@ public class DeclarativeDemo {
 			System.out.println("Has duplicates");
 		
 		//Also see: http://www.leveluplunch.com/java/examples/stream-terminal-operations-example/
-				
+		//================== REDUCE ===================================================
+		//Sum of all numbers in stream
+		System.out.println("Sum of all numbers: " +
+		numbers.stream()
+		.reduce(0,(a,b) -> a + b));
 		
+		int sum = IntStream.of(1, 2, 3, 4).reduce(0, (a, b) -> a + b);
+		System.out.println("Sum is " + sum);
 		
+		System.out.println("Product of all even numbers: " +
+				numbers.stream()
+				.filter(e -> e % 2 == 0)
+				.reduce(0,(a,b) -> a + b));
+		//================ TOARRAY =====================================================
+		
+		Object[] objArray = numbers.stream()
+				.filter(e -> e % 2 == 0)
+				.toArray();
+		System.out.println("Objarray length is: " + objArray.length);
+		
+		//============ STREAM OF ======= FOREACH =====================
+		Stream.of("Hello", "World").forEach(p -> System.out.print(p.length() + " - "));
+		System.out.println();
+		//===== MIN ======  MAX ===== MAPTODOUBLE ======
+		System.out.println("Minimum " + IntStream.of(1, 2, 3).min());
+		//convert the optional to an int
+		System.out.println("Minimum " + IntStream.of(1, 2, 3).min().getAsInt());
+		
+		System.out.println(Stream.of(1d, 2d, 3d)
+	            .mapToDouble(Double::doubleValue).max());
+		
+		//=========ALLMATCH NONEMATCH ANYMATCH =============
+		System.out.println("Has anything matching length > 5? " + Stream.of("two", "three", "eighteen").anyMatch(s -> s.length() > 5));
+		
+		List<String> cookies = Arrays.asList("Peanut Butter Cookies",
+	            "Oatmeal-Raisin Cookies", "Basic Chocolate Chip Cookies");
+
+	    System.out.println("Do they all have cookies? " + cookies.stream().allMatch(
+	            p -> p.contains("Cookies")));
+	    System.out.println("Do none have banana? " + cookies.stream().noneMatch(
+	            p -> p.contains("Banana")));
 	}
 	
 	public static boolean isGreaterThan3(int a) {
