@@ -10,6 +10,8 @@ package com.gill.facadepattern;
  * a rectangle and a square.  The client (i.e. this demo class) is oblivious
  * to the draw methods that get called on the circle, square and rectangle classes
  * and that these classes even exist.
+ * 
+ * http://www.tutorialspoint.com/design_pattern/facade_pattern.htm
  */
 public class FacadeDemo {
 	public static void main(String[] args) {
