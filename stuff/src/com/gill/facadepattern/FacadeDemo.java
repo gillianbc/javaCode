@@ -5,6 +5,7 @@ package com.gill.facadepattern;
  * interface to the client using which the client can access the system. 
  * This type of design pattern comes under structural pattern as this 
  * pattern adds an interface to existing system to hide its complexities.
+ * For example, complex legacy code could be hidden behind a facade.
  * 
  * In this example, the ShapeMaker is a facade that creates a circle,
  * a rectangle and a square.  The client (i.e. this demo class) is oblivious

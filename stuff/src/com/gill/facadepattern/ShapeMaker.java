@@ -1,5 +1,7 @@
 package com.gill.facadepattern;
-
+/*
+ * This is the 'wrapper' class
+ */
 public class ShapeMaker {
 	   private Shape circle;
 	   private Shape rectangle;
