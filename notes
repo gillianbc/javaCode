@@ -1,1 +1,15 @@
 This is a new file
+Git Notes
+Most used commands
+git checkout -b mybranch
+git status
+git add -u mymodifiedfile
+git add -u
+git add mynewfile
+git branch 
+git checkout master
+git merge mybranch
+git commit -m "my checkin comment"
+git push origin master
+
+I need to learn about rebase
