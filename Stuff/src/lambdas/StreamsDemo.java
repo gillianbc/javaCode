@@ -126,6 +126,7 @@ public class StreamsDemo {
 	            p -> p.contains("Banana")));
 	    
 //	    ======= grouping =======
+//	    For more examples see http://www.leveluplunch.com/java/examples/java-util-stream-groupingBy-example/
 	    
 	    List<StudentClass> studentClasses = new ArrayList<>();
 	    studentClasses.add(new StudentClass("Kumar", 101, "Intro to Web"));
