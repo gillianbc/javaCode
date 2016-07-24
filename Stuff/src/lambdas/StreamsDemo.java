@@ -1,15 +1,18 @@
 package lambdas;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class DeclarativeDemo {
+public class StreamsDemo {
 
 	public static void main(String[] args) {
 		List<Integer> numbers = Arrays.asList(1, 3, 2, 3, 5, 8, 4, 8);
@@ -49,11 +52,16 @@ public class DeclarativeDemo {
 		 * You can also use method calls for the filtering and mapping
 		 */
 		System.out.println(numbers.stream()
-				.filter(DeclarativeDemo::isGreaterThan3)
-				.filter(DeclarativeDemo::isEven)
-				.map(DeclarativeDemo::doubleMe)
+				.filter(StreamsDemo::isGreaterThan3)
+				.filter(StreamsDemo::isEven)
+				.map(StreamsDemo::doubleMe)
 				.findFirst());
-
+		
+//		=== BASIC SYSOUT =====
+		System.out.println("Basic sysout");
+		numbers.stream().collect(Collectors.toSet()).forEach(System.out::println);
+		numbers.stream().collect(Collectors.toSet()).forEach(p -> System.out.println("Number is " + p));
+		
 		/*
 		 * Print out the numbers that are duplicates i.e. 
 		 * occur more than once in the stream
@@ -116,8 +124,31 @@ public class DeclarativeDemo {
 	            p -> p.contains("Cookies")));
 	    System.out.println("Do none have banana? " + cookies.stream().noneMatch(
 	            p -> p.contains("Banana")));
+	    
+//	    ======= grouping =======
+	    
+	    List<StudentClass> studentClasses = new ArrayList<>();
+	    studentClasses.add(new StudentClass("Kumar", 101, "Intro to Web"));
+	    studentClasses.add(new StudentClass("White", 102, "Advanced Java"));
+	    studentClasses.add(new StudentClass("Kumar", 101, "Intro to Cobol"));
+	    studentClasses.add(new StudentClass("Sargent", 101, "Intro to Web"));
+	    studentClasses.add(new StudentClass("Sargent", 102, "Advanced Web"));
+	    
+	    Map<String, List<StudentClass>> groupByTeachers; 
+	    groupByTeachers = studentClasses
+	            .stream()
+	            .collect(Collectors.groupingBy(StudentClass::getTutor));
+	    printCourses(groupByTeachers.get("White"));
+	    printCourses(groupByTeachers.get("Sargent"));
+	    printCourses(groupByTeachers.get("Kumar"));
+	    
 	}
 	
+	public static void printCourses(List<StudentClass> classes){
+		for (StudentClass sc : classes){
+			System.out.println("COURSE: " + sc.getClassName() + " " + sc.getLevel() + " " + sc.getTutor());
+		}
+	}
 	public static boolean isGreaterThan3(int a) {
 		System.out.println("Is > 3 - " + a);
 		return a > 3;
