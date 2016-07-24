@@ -146,6 +146,32 @@ public class StreamsDemo {
 	            .map(integer -> integer + 10)
 	            .collect(Collectors.toList());
 	    System.out.println("Stream of List<Integer> objects is flat mapped to stream of integers which is then collected into a list " + together);
+	    
+	    //===== TOKENIZING and DISTINCT ======
+	    // filtering unique elements
+	    List<Article> posts = createArticles();
+	    
+	    List<String> tags = posts
+	            .stream()
+	            .map(Article::getTags)
+	            .flatMap(tag -> Arrays.stream(tag.split(","))
+	            		.map(String::trim)
+	                    .map(String::toLowerCase))
+	            .distinct()
+	            .collect(Collectors.toList());
+	    System.out.println("The list of all tags used is " + tags);        
+	}
+
+	private static List<Article> createArticles() {
+		List<Article> blogposts;
+		blogposts = new ArrayList<>();
+		blogposts.add(new Article("How to be slim", "health,lifestyle,weight", 1000));
+		blogposts.add(new Article("Why are people so tired?", "health,lifestyle,sleep", 400));
+		blogposts.add(new Article("Get fit in 10 mins a day", "health,Lifestyle,exercise", 1000));
+		blogposts.add(new Article("Earwax for all", "medicine,health", 500));
+		blogposts.add(new Article("That gut feeling", "medicine,Health,nutrition", 500));
+		return blogposts;
+		
 	}
 
 	public static void printCourses(List<StudentClass> classes) {
