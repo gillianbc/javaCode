@@ -1,5 +1,5 @@
 /*
- * Some stream examples
+ * Some stream examples by Gillian BC
  */
 	
 package lambdas;
