@@ -1,3 +1,7 @@
+/*
+ * Some stream examples
+ */
+	
 package lambdas;
 
 import java.util.ArrayList;
