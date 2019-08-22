@@ -43,7 +43,7 @@ public class StreamsSample {
 		// e.g. person.getName() gives you a String
 		System.out.println("Using a stream " + 
 				people.stream()
-		        .filter(person -> person.getGender() == Gender.FEMALE)
+		                .filter(person -> person.getGender() == Gender.FEMALE)
 				.filter(person -> person.getAge() > 18)
 				.map(person -> person.getName())
 				.map(named -> named.toUpperCase())
@@ -72,10 +72,9 @@ public class StreamsSample {
 		// focus on the whole collection instead of fiddling with iteration and
 		// each element.
 		// Don't be dirty and mutate the stream. If you need to change what' in
-		// the
-		// collection, do it outside of the stream
+		// the collection, do it outside of the stream
 
-		// get the total age of all the women
+		// AIM - Get the total age of all the women
 		/*
 		 * reduce - pass a postIt note around all the people and get them to add
 		 * their age to the running total The first postIt has a 0 on it -
